@@ -34,7 +34,7 @@ const diet = ['tomato', 'cucumber', 'rocket']
 
 // You are a programmer. In one line (one statement) insert hamburger, soda and pizza between the elements cucumber and rocket
 
-diet.splice(2, 0, 'hamburger', 'soda', 'pizza')
+diet.splice(diet.indexOf('cucumber') + 1, 0, 'hamburger', 'soda', 'pizza')
 
 // --------------------------------------
 // Exercise 5 - Remove element
@@ -58,7 +58,9 @@ const lettersExpanded = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 
 // log every second char in the array starting from b
 
-console.log(lettersExpanded.filter((x, i) => i % 2))
+for (let i = lettersExpanded.indexOf('b'); i < lettersExpanded.length; i = i + 2) {
+  console.log(lettersExpanded[i])
+}
 
 // --------------------------------------
 // Exercise 8 - For loop and if statement
@@ -70,14 +72,14 @@ const discardedNumbers = []
 // log the element if the number is above 6 or below 0
 // else push them to the array discardedNumbers
 
-for (i = 0; i < numbers.length; i++) {
-  if (numbers[i] > 6 || numbers[i] < 0) {
-    console.log(numbers[i])
+for (let n of numbers) {
+  if (n > 6 || n < 0) {
+    console.log(n)
   } else {
-    discardedNumbers.push(numbers[i])
+    discardedNumbers.push(n)
   }
-
-  console.log(discardedNumbers)
 }
+
+console.log(discardedNumbers)
 
 // --------------------------------------

@@ -28,8 +28,6 @@ const info = {
 
 const stackOverflow = {}
 
-stackOverflow.addProperty = 'This is a property!'
-
 // make a rule called isAllowed and let the value be true
 
 stackOverflow.isAllowed = true
