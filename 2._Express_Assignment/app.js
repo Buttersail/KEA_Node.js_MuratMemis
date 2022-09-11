@@ -1,11 +1,9 @@
 const express = require('express')
 const app = express()
 
-// I dont know if this is the solution you wanted, I dont feel like it's the right way of solving this.
-// Looking forward to the next class so I can learn the correct way of doing this.
 let weaponsArray = [
-  { type: 'Assault Rifle', name: 'AK-47', price: 100 },
-  { type: 'Shotgun', name: 'Remington Model 887', price: 100 },
+  { type: 'Assault Rifle', name: 'AK-47', price: 100, id: 1 },
+  { type: 'Shotgun', name: 'Remington Model 887', price: 100, id: 2 },
 ]
 
 app.get('/', (request, response) => {
@@ -17,13 +15,13 @@ app.get('/weapons', (req, res) => {
 })
 
 app.get('/weapons/:id', (req, res) => {
-  if (Number(req.params.id) === 1) {
-    res.send(weaponsArray[0])
-  } else if (Number(req.params.id) === 2) {
-    res.send(weaponsArray[1])
-  } else {
-    res.send({ errorMessage: 'No such weapon' })
+  for (let v in weaponsArray) {
+    if (weaponsArray[v].id === Number(req.params.id)) {
+      res.send(weaponsArray[v])
+      return
+    }
   }
+  res.send({ errorMessage: `${req.params.id} doesn't exist` })
 })
 
 app.listen(8080, () => {
