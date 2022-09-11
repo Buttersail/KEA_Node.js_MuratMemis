@@ -1,27 +1,36 @@
 const express = require('express')
 const app = express()
 
-let weaponsArray = [
-  { type: 'Assault Rifle', name: 'AK-47', price: 100, id: 1 },
-  { type: 'Shotgun', name: 'Remington Model 887', price: 100, id: 2 },
-]
+let weapons = {
+  1: {
+    id: 1,
+    type: 'Assault Rifle',
+    name: 'AK-47',
+  },
+  2: {
+    id: 2,
+    type: 'Shotgun',
+    name: 'Remington Model 887',
+  },
 
-app.get('/', (request, response) => {
-  response.send({ message: 'Created my first route, check!' })
-})
+  appelsinvand: {
+    id: 'appelsinvand',
+    type: 'Læskedrik',
+    name: 'Appelsinvand',
+    trivia: 'Min appelsinvand',
+  },
+}
 
 app.get('/weapons', (req, res) => {
-  res.send(weaponsArray)
+  res.send(Object.values(weapons))
 })
 
 app.get('/weapons/:id', (req, res) => {
-  for (let v in weaponsArray) {
-    if (weaponsArray[v].id === Number(req.params.id)) {
-      res.send(weaponsArray[v])
-      return
-    }
+  if (req.params.id in weapons) {
+    res.send(weapons[req.params.id])
+  } else {
+    res.send({ errorMessage: `${req.params.id} doesn't exist` })
   }
-  res.send({ errorMessage: `${req.params.id} doesn't exist` })
 })
 
 app.listen(8080, () => {
