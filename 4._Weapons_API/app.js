@@ -3,6 +3,8 @@ const app = express()
 
 const weapons = [{ name: 'AK-47' }, { name: 'Knife' }]
 
+app.use(express.json())
+
 app.get('/weapons', (req, res) => {
   res.send({ data: weapons })
 })
