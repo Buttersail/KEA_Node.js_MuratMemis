@@ -36,6 +36,22 @@ app.get('/cups', (req, res) => {
   res.send({ amount: 'Many' })
 })
 
+app.get('/lookundetthebed', (req, res) => {
+  /* Assignment: Allow the user to define if they have a flashlight
+     if they do then send the response "You are safe"
+     If they don't then redireect them to /monster
+  */
+
+  if (req.query.flashlight) {
+    return res.send({ message: 'You are safe' })
+  }
+  res.redirect('/monster')
+})
+
+app.get('/monster', (req, res) => {
+  res.send({ message: 'Uh oh! Scary Monster!!!' })
+})
+
 app.listen(8080, () => {
   console.log('Server is running on port', 8080)
 })
